@@ -40,7 +40,7 @@ const MealItemForm = (props) => {
         }}
       />
       <button type="submit">+ Add</button>
-      {!amountIsValid && <p>Please, enter a valid amount</p>}
+      {!amountIsValid && <p>Please, enter a valid amount (1-5)</p>}
     </form>
   );
 };
