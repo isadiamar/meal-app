@@ -21,7 +21,7 @@ const cartReducer = (state, action) => {
     );
     //Find the element by index
     const existingCartItems = state.items[existingItemCartIndex];
-    //If the element already exists, incerase the amout but stay in one CardItem
+    //If the element already exists, increase the amount but stay in one CardItem
     let updatedItems;
     if (existingCartItems) {
       const updatedItem = {
