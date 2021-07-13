@@ -37,7 +37,7 @@ const Cart = (props) => {
 
   //Submit Order Handler
   const submitOrderHandler = async (userData) => {
-    //Submit States
+    //Update Submit States
     setIsSubmitting(true);
     setDidSubmit(false);
 
@@ -53,9 +53,12 @@ const Cart = (props) => {
       }
     );
 
-    //Submit States
+    //Update Submit States
     setIsSubmitting(false);
     setDidSubmit(true);
+
+    //Clear Cart
+    cartCtx.clearCart();
   };
 
   //Items added to the cart
@@ -74,7 +77,7 @@ const Cart = (props) => {
     </ul>
   );
 
-  //Order Button Modal connected to formIsShow
+  //Order Button Modal connected to formIsShow State
   const ModalActions = (
     <div className={styles.actions}>
       <button className={styles["button--alt"]} onClick={props.onHideCart}>
@@ -87,7 +90,8 @@ const Cart = (props) => {
       )}
     </div>
   );
-  // Form Modal connected to submit states
+
+  // Form Modal connected to the submit states
   const CartModalContent = (
     <React.Fragment>
       {cartItems}

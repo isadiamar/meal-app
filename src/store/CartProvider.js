@@ -55,7 +55,7 @@ const cartReducer = (state, action) => {
     //If there is only one, remove the item
     if (existingItem.amount === 1) {
       updatedItems = state.items.filter((item) => item.id !== action.id);
-    //If there are more, decrease by one the amount
+      //If there are more, decrease by one the amount
     } else {
       const updatedItem = { ...existingItem, amount: existingItem.amount - 1 };
       updatedItems = [...state.items];
@@ -67,11 +67,15 @@ const cartReducer = (state, action) => {
     };
   }
 
+  if (action.type === "CLEAR") {
+    return defaultCartState;
+  }
   return defaultCartState;
 };
 
 //CartProvider Component
 const CartProvider = (props) => {
+
   const [cartState, dispatchCartAction] = useReducer(
     cartReducer,
     defaultCartState
@@ -86,12 +90,17 @@ const CartProvider = (props) => {
     dispatchCartAction({ type: "REMOVE", id: id });
   };
 
-  //State Contenxt
+  const clearCartHandler = () =>{
+    dispatchCartAction({type:"CLEAR"})
+  }
+
+  //State Context
   const cartContext = {
     items: cartState.items,
     totalAmount: cartState.totalAmount,
     addItem: addItemToCartHandler,
     removeItem: removeItemFromCartHandler,
+    clearCart: clearCartHandler
   };
 
   return (
